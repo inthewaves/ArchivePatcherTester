@@ -16,6 +16,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.security.DigestOutputStream
 import java.security.MessageDigest
+import java.security.interfaces.ECPublicKey
 import java.util.*
 import java.util.zip.GZIPInputStream
 
@@ -107,6 +108,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             cacheDir.listFiles()?.forEach { it.delete() }
+
         }
     }
 
