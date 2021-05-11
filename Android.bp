@@ -1,0 +1,21 @@
+android_app {
+    name: "ArchivePatcherTester",
+    srcs: ["app/src/main/**/*.kt"],
+    resource_dirs: ["app/src/main/res"],
+    static_libs: [
+        "kotlin-stdlib",
+        "androidx.core_core-ktx",
+        "androidx.appcompat_appcompat",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "com.google.android.material_material",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx.preference_preference",
+        "guava",
+        "archive-patcher-test-viewbinding",
+        "archive-patcher-test-databinding-runtime"
+    ],
+    plugins: ["archive-patcher-test-databinding-compiler-plugin"],
+    platform_apis: true,
+    privileged: true,
+    manifest: "app/src/main/AndroidManifest.xml",
+}

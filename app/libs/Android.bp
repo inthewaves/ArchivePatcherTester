@@ -1,0 +1,136 @@
+java_import {
+    name: "archive-patcher-databinding-compiler-common-jar",
+    jars: ["m2/databinding-compiler-common-3.6.2.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import {
+    name: "archive-patcher-databinding-baseLibrary-jar",
+    jars: ["m2/baseLibrary-3.6.2.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+//java_import {
+//    name: "archive-patcher-test-guava-android-jar",
+//    jars: ["m2/guava-28.0-android.jar"],
+//    sdk_version: "current",
+//}
+
+java_import {
+    name: "archive-patcher-test-guava-jre-27.1-jar",
+    jars: ["m2/guava-27.1-jre.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import_host {
+    name: "archive-patcher-test-javapoet-jar",
+    jars: ["m2/javapoet-1.10.0.jar"],
+}
+
+java_import {
+    name: "archive-patcher-test-gson-jar",
+    jars: ["m2/gson-2.8.5.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import {
+    name: "archive-patcher-test-android-annotations-jar",
+    jars: ["m2/annotations-26.6.2.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import {
+    name: "archive-patcher-test-jetifier-core-jar",
+    jars: ["m2/jetifier-core-1.0.0-beta08.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import {
+    name: "archive-patcher-databinding-common-jar",
+    jars: ["m2/databinding-common-3.6.2.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+// kotlin-stdlib 1.3.61 is already included in the source
+
+java_import {
+    name: "archive-patcher-auto-common-jar",
+    jars: ["m2/auto-common-0.10.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import {
+    name: "archive-patcher-commons-io-jar",
+    jars: ["m2/commons-io-2.4.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import {
+    name: "archive-patcher-antlr4-io-jar",
+    jars: ["m2/antlr4-4.5.3.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import {
+    name: "archive-patcher-juniversalchardet-jar",
+    jars: ["m2/juniversalchardet-1.0.3.jar"],
+    host_supported: true,
+    sdk_version: "current",
+}
+
+java_import_host {
+    name: "archive-patcher-databinding-compiler-nodeps",
+    jars: ["m2/databinding-compiler-3.6.2.jar"],
+    sdk_version: "current",
+}
+
+java_library_host {
+    name: "archive-patcher-test-androidx.databinding-compiler",
+    static_libs: [
+        "archive-patcher-databinding-compiler-nodeps",
+            "archive-patcher-databinding-compiler-common-jar",
+                "archive-patcher-databinding-baseLibrary-jar",
+                "archive-patcher-test-guava-jre-27.1-jar",
+                "archive-patcher-test-javapoet-jar",
+                "archive-patcher-test-gson-jar",
+                "archive-patcher-test-android-annotations-jar",
+                "archive-patcher-test-jetifier-core-jar",
+            "archive-patcher-databinding-common-jar",
+            "kotlin-stdlib",
+            //"archive-patcher-auto-common-jar",
+            "archive-patcher-commons-io-jar",
+            "archive-patcher-antlr4-io-jar",
+            "archive-patcher-juniversalchardet-jar"
+    ]
+}
+
+java_plugin {
+    name: "archive-patcher-test-databinding-compiler-plugin",
+    static_libs: [
+        "archive-patcher-test-androidx.databinding-compiler"
+    ],
+    processor_class: "android.databinding.annotationprocessor.ProcessDataBinding",
+    generates_api: true,
+}
+
+android_library_import {
+    name: "archive-patcher-test-viewbinding",
+    aars: ["m2/viewbinding-3.6.2.aar"],
+    sdk_version: "current",
+}
+
+android_library_import {
+    name: "archive-patcher-test-databinding-runtime",
+    aars: ["m2/databinding-runtime-3.6.2.aar"],
+    sdk_version: "current",
+}
