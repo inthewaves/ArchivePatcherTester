@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             val version26File = File(cacheDir, "Auditor-26.apk")
-            val version26Digest: String
+            var version26Digest: String = ""
             assets.open("Auditor-26.apk").use { inStream ->
                 DigestOutputStream(version26File.outputStream(), MessageDigest.getInstance("SHA-256")).use { outStream ->
                     inStream.copyTo(outStream)
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 middleTextView.text = "Applying patch. The cache dir: ${cacheDir.listFiles()?.toList()}"
             }
 
-            val digestFromPatch: String
+            var digestFromPatch: String = ""
             GZIPInputStream(patchFile.inputStream()).use { inputPatchDelta ->
                 DigestOutputStream(
                     File(cacheDir, "Auditor-26-patched.apk").outputStream(),
