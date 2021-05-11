@@ -1,13 +1,12 @@
 package com.example.archivepatchertester
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Base64
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.archivepatchertester.databinding.ActivityMainBinding
 import com.google.archivepatcher.applier.FileByFileV1DeltaApplier
 import com.google.common.io.BaseEncoding
 import kotlinx.coroutines.Dispatchers
@@ -16,17 +15,16 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.security.DigestOutputStream
 import java.security.MessageDigest
-import java.security.interfaces.ECPublicKey
 import java.util.*
 import java.util.zip.GZIPInputStream
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var middleTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
+        middleTextView = findViewById(R.id.middleTextView)
 
         lifecycleScope.launch(Dispatchers.IO) {
             val version25File = File(cacheDir, "Auditor-25.apk")
@@ -61,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Size of apk is ${version25File.length()}", Toast.LENGTH_LONG).show()
 
                 Log.d(TAG, "The cache dir: ${cacheDir.listFiles()?.toList()}")
-                binding.middleTextView.text = "Applying patch. The cache dir: ${cacheDir.listFiles()?.toList()}"
+                middleTextView.text = "Applying patch. The cache dir: ${cacheDir.listFiles()?.toList()}"
             }
 
             val digestFromPatch: String
@@ -97,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             */
             withContext(Dispatchers.Main) {
                 @SuppressLint("SetTextI18n")
-                binding.middleTextView.text = """
+                middleTextView.text = """
                     Done! The cache dir:  ${cacheDir.listFiles()?.toList()}       
                                  
                     Digest from patch is $digestFromPatch,
