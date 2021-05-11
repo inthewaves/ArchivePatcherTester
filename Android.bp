@@ -10,7 +10,8 @@ android_app {
         "com.google.android.material_material",
         "androidx-constraintlayout_constraintlayout",
         "androidx.preference_preference",
-        "guava"
+        "guava",
+        "archive-patcher-applier"
     ],
     platform_apis: true,
     privileged: true,
