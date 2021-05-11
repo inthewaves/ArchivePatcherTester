@@ -16,4 +16,5 @@ android_app {
     platform_apis: true,
     privileged: true,
     manifest: "app/src/main/AndroidManifest.xml",
+    aaptflags: ["-A packages/apps/ArchivePatcherTester/app/src/main/assets"]
 }
