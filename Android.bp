@@ -10,11 +10,8 @@ android_app {
         "com.google.android.material_material",
         "androidx-constraintlayout_constraintlayout",
         "androidx.preference_preference",
-        "guava",
-        "archive-patcher-test-viewbinding",
-        "archive-patcher-test-databinding-runtime"
+        "guava"
     ],
-    plugins: ["archive-patcher-test-databinding-compiler-plugin"],
     platform_apis: true,
     privileged: true,
     manifest: "app/src/main/AndroidManifest.xml",
